@@ -49,16 +49,13 @@ function ViewCode() {
     const GenerateCode = async (record: RECORD) => {
         try {
             setLoading(true);
-            console.log("record", record.description);
-            
-            // Use fetch instead of axios for streaming
-            const response = await fetch('/api/user/ai-model', {
+                        const response = await fetch('/api/user/ai-model', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
                 },
                 body: JSON.stringify({
-                    description: record.description+":"+Constants.PROMPT,
+                    description: record+":"+Constants.PROMPT,
                     model: record.model,
                     imageUrl: record?.imageUrl
                 })

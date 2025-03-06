@@ -1,13 +1,16 @@
 import React from 'react'
-import {RECORD} from '../[uid]/page'
-import Image from "next/image";
+import Image from 'next/image';
+import { RECORD } from '../[uid]/page';
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 
-export function SelectionDetail({record}:any) {
-    
 
-    return record &&(
+interface Props {
+    record?: RECORD;
+}
+
+export const SelectionDetail = ({ record }: Props) => {
+    return (
         <div className='p-5 bg-gray-100 h-[80vh] rounded-lg'>
             <h2 className='font-bold my-2 p-2'>Wireframe</h2>
             <Image src={record?.imageUrl} alt='WireFrame' width={300} height={400} 

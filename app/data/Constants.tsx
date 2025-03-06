@@ -35,6 +35,7 @@ export default {
 - Use lucid library for icons
 - Do not use any third party library
 - Only give react+ tailwindcss code and do not write any text other than code
+-do not start the code by writing language name without commenting it because it will be considered as a part of the code and i get errors
 `,
 
     AiModelList: [
