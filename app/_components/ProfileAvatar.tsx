@@ -29,8 +29,8 @@ function ProfileAvatar() {
         <div>
             <Popover >
                 <PopoverTrigger>
-                    <Image src={user?.user?.photoURL ? user?.user?.photoURL:  null} alt='profile' className='w-[35px] h-[35px] rounded-full' width={35} height={35}/>
-                    {/* {user?.user?.photoURL && <Image src={user?.user?.photoURL} alt='profile' className='w-[35px] h-[35px] rounded-full' />} */}
+                    <Image src={user?.user?.photoURL ? user?.user?.photoURL:  null} alt='profile' className='w-[25px] h-[25px] rounded-full' width={25} height={25}/>
+                    {/* {user?.user?.photoURL && <Image src={user?.user?.photoURL} alt='profile' className='w-[25px] h-[25px] rounded-full' />} */}
                 </PopoverTrigger>
                 <PopoverContent className='w-[100px] mx-w-sm'>
                     <Button variant={'ghost'} onClick={onButtonPress} className=''>Logout</Button>

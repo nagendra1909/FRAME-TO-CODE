@@ -6,7 +6,10 @@ import { useState,useEffect } from "react";
 import { Description } from '@radix-ui/react-dialog';
 import { LoaderCircle } from 'lucide-react';
 import Constants from '@/app/data/Constants';
-interface RECORD {
+import AppHeader from '@/app/_components/AppHeader';
+import { SelectionDetail } from '../_components/SelectionDetail';
+import { CodeEditor } from '../_components/CodeEditor';
+export interface RECORD {
     id:number,
     description:string,
     code:any,
@@ -20,15 +23,19 @@ function ViewCode() {
     const {uid}=useParams();
     const [loading,setLoading]=useState(false);
     const [codeResp,setCodeResp]=useState('');
+    const [record,setRecord]=useState<RECORD>();
+    const [isReady,setIsReady]=useState(false);
     useEffect(()=>{
         uid&&GetRecordInfo();
     },[uid])    
 
     const GetRecordInfo=async()=>{
         setLoading(true);
+       
     const result = await axios.get('/api/user/wireframe-to-code?uid='+uid);
     console.log("result ",result.data);
     const resp=result?.data;
+    setRecord(result?.data);
     console.log("Desc",resp.description);
     if (resp?.code==null)
     {
@@ -38,7 +45,7 @@ function ViewCode() {
         console.log("No Result Found");
         setLoading(false);
     }
-}
+    }
     const GenerateCode = async (record: RECORD) => {
         try {
             setLoading(true);
@@ -79,6 +86,7 @@ function ViewCode() {
                 setCodeResp((prev)=>prev+text);
                 accumulatedText += text;
                 console.log("Received chunk:", text);
+            
                 // You might want to update state here to show the streaming response
                 // setState(prevState => prevState + text);
             }
@@ -89,14 +97,29 @@ function ViewCode() {
         } catch (error) {
             console.error("Error generating code:", error);
         } finally {
+            setIsReady(true);
             setLoading(false);
         }
     }
 
   return (
-    <div>ViewCode
-        {loading&&<LoaderCircle className='animate-spin'/>}
-        <p>{codeResp}</p>
+    <div>
+        <AppHeader hideSidebar={true}/>
+        <div className='grid grid-cols-1 md:grid-cols-5 p-5 gap-10'>
+            <div>
+                {/*selection details*/}
+                <SelectionDetail record={record}/>
+
+            </div>
+            <div className='col-span-4'>
+                {/*code details*/}
+                <CodeEditor codeResp={codeResp} isReady={isReady}/>
+ 
+            </div>
+
+        </div>
+       
+       
     </div>
   )
 }
