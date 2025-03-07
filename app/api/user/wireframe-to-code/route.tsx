@@ -28,3 +28,13 @@ export async function GET(req:NextResponse) {
     }
     return NextResponse.json({error:'No Record Found'});
 }
+
+export async function PUT(req:NextRequest) {
+    const {uid,codeResp}=await req.json();
+    const result=await db.update(WireframeToCodeTable).set({
+        code:codeResp
+    }).where(eq(WireframeToCodeTable.uid,uid))
+    .returning({uid:WireframeToCodeTable.uid});
+    return NextResponse.json(result);
+    
+}

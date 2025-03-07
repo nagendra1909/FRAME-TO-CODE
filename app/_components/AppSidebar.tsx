@@ -31,16 +31,7 @@ const items = [
         url: "/credits",
         icon: Coins,
     },
-    {
-        title: "Search",
-        url: "#",
-        icon: Search,
-    },
-    {
-        title: "Settings",
-        url: "#",
-        icon: Settings,
-    },
+    
 ]
 
 export function AppSidebar() {
