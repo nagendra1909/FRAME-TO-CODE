@@ -9,13 +9,15 @@ import { RefreshCcw } from 'lucide-react';
 
 interface Props {
     record?: RECORD;
+    regenerateCode?: () => void;  // Add this line
+    isReady?: boolean;  // Add this line
 }
 
 export const SelectionDetail = ({ record,regenerateCode ,isReady}: Props) => {
     return (
         <div className='p-5 bg-gray-100 h-[80vh] rounded-lg'>
             <h2 className='font-bold my-2 p-2'>Wireframe</h2>
-            <Image src={record?.imageUrl} alt='WireFrame' width={300} height={400} 
+            <Image src={record?.imageUrl ? record?.imageUrl : '/placeholder.svg'} alt='WireFrame' width={300} height={400} 
             className='rounded-lg object-contain h-[200px] w-full border border-dashed p-2 bg-white'/>
 
             <h2 className='font-bold mt-4 mb-2 p-2'>AI Model</h2>

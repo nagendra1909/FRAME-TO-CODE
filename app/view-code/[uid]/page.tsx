@@ -88,7 +88,7 @@ function ViewCode() {
                 if (done) break;
                 // console.log("Received chunk:", value);``
     
-                const text = (decoder.decode(value)).replace('```typescript',).replace('```', '');
+                const text = (decoder.decode(value)).replace('```typescript','').replace('```', '');
                 setCodeResp((prev)=>prev+text);
                 accumulatedText += text;
                 console.log("Received chunk:", text);

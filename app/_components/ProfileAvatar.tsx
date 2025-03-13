@@ -29,7 +29,7 @@ function ProfileAvatar() {
         <div>
             <Popover >
                 <PopoverTrigger>
-                    <Image src={user?.user?.photoURL ? user?.user?.photoURL:  null} alt='profile' className='w-[25px] h-[25px] rounded-full' width={25} height={25}/>
+                    <Image src={user?.user?.photoURL ? user?.user?.photoURL: '/placeholder.svg' } alt='profile' className='rounded-full' width={25} height={25}/>
                     {/* {user?.user?.photoURL && <Image src={user?.user?.photoURL} alt='profile' className='w-[25px] h-[25px] rounded-full' />} */}
                 </PopoverTrigger>
                 <PopoverContent className='w-[100px] mx-w-sm'>
